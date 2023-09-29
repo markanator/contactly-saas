@@ -1,0 +1,85 @@
+<script lang="ts">
+	import '../app.css';
+	import { page } from '$app/stores';
+	import {
+		Navbar,
+		NavBrand,
+		NavHamburger,
+		NavUl,
+		NavLi,
+		Button,
+		Dropdown,
+		DropdownItem
+	} from 'flowbite-svelte';
+	import { ChevronDownSolid } from 'flowbite-svelte-icons';
+	import type { LayoutData } from './$types';
+	import { invalidate } from '$app/navigation';
+	import { onMount } from 'svelte';
+
+	const navigation = [
+		{ label: 'Home', href: '/' },
+		{ label: 'Pricing', href: '/pricing' },
+		{ label: 'Contacts', href: '/contacts' }
+	];
+	export let data: LayoutData;
+	$: ({ session, supabase } = data);
+	onMount(() => {
+		const {
+			data: { subscription }
+		} = supabase.auth.onAuthStateChange((ev, _s) => {
+			if (_s?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
+		});
+
+		return () => {
+			subscription.unsubscribe();
+		};
+	});
+</script>
+
+<svelte:head>
+	<title>Contactly</title>
+</svelte:head>
+
+<div class="flex h-full flex-col">
+	<Navbar let:hidden let:toggle>
+		<NavBrand href="/">
+			<img src="/images/logo.png" class="mr-3 h-6 sm:h-9" alt="Contactly Logo" />
+			<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+				Contactly
+			</span>
+		</NavBrand>
+		<div class="flex md:order-2">
+			{#if session}
+				<Button color="light">Account<ChevronDownSolid class="w-3 h-3 ml-2" /></Button>
+				<Dropdown>
+					<div slot="header" class="px-4 py-2">
+						<span class="block truncate text-sm font-medium"> {session.user.email} </span>
+					</div>
+					<DropdownItem href="/account">Settings</DropdownItem>
+					<DropdownItem href="/account">Billing</DropdownItem>
+					<form action="/logout" method="post">
+						<DropdownItem type="submit" slot="footer">Sign out</DropdownItem>
+					</form>
+				</Dropdown>
+			{:else}
+				<div class="flex items-center gap-2">
+					<Button color="blue" href="/login" size="sm">Login</Button>
+					<Button href="/register" size="sm" color="alternative">Register</Button>
+				</div>
+			{/if}
+			<NavHamburger on:click={toggle} />
+		</div>
+		<NavUl {hidden}>
+			{#each navigation as nav}
+				<NavLi href={nav.href} active={$page.url.pathname === nav.href}>{nav.label}</NavLi>
+			{/each}
+		</NavUl>
+	</Navbar>
+	<div class="w-full flex-grow px-2 sm:px-4">
+		<div class="container mx-auto">
+			<slot />
+		</div>
+	</div>
+</div>
