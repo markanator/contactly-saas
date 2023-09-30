@@ -4,7 +4,6 @@
 		Button,
 		Dropdown,
 		DropdownItem,
-		MenuButton,
 		Table,
 		TableBody,
 		TableBodyCell,
@@ -12,13 +11,22 @@
 		TableHead,
 		TableHeadCell
 	} from 'flowbite-svelte';
+	import { DotsVerticalOutline } from 'flowbite-svelte-icons';
+	import type { PageData } from './$types';
+	import CreateContactModal from './CreateContactModal.svelte';
+
+	export let data: PageData;
+	let isCreateModalOpen = false;
+	function handleCreateModalToggle() {
+		isCreateModalOpen = !isCreateModalOpen;
+	}
 </script>
 
 <div class="py-20">
 	<!-- Contacts Page Header -->
 	<div class="flex w-full items-center justify-between pb-6">
 		<h1 class="text-3xl">Contacts</h1>
-		<Button color="blue" size="sm">New Contact</Button>
+		<Button color="blue" size="sm" on:click={handleCreateModalToggle}>New Contact</Button>
 	</div>
 	<!-- Contacts Table -->
 	<Table shadow divClass="min-h-full">
@@ -37,7 +45,15 @@
 					<TableBodyCell>{contact.phone}</TableBodyCell>
 					<TableBodyCell>{contact.company}</TableBodyCell>
 					<TableBodyCell>
-						<MenuButton class="dots-menu dark:text-white" vertical name="Contact Menu" />
+						<Button
+							color="primary"
+							class="dots-menu dark:text-white"
+							vertical
+							size="xs"
+							name="Contact Menu"
+						>
+							<DotsVerticalOutline class="ring-0 outline-none" />
+						</Button>
 						<Dropdown placement="left-start">
 							<DropdownItem>Edit</DropdownItem>
 							<DropdownItem slot="footer">Delete</DropdownItem>
@@ -47,4 +63,6 @@
 			{/each}
 		</TableBody>
 	</Table>
+	<!-- CREATE CONTACT MODAL -->
+	<CreateContactModal bind:open={isCreateModalOpen} data={data.contactForm} />
 </div>
