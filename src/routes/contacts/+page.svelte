@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { contacts } from '$lib/data';
 	import {
 		Button,
 		Dropdown,
@@ -38,12 +37,12 @@
 			<TableHeadCell />
 		</TableHead>
 		<TableBody>
-			{#each contacts as contact, _i (contact.id)}
+			{#each data.contacts as contact, _i (contact.id)}
 				<TableBodyRow>
-					<TableBodyCell>{contact.name}</TableBodyCell>
-					<TableBodyCell>{contact.email}</TableBodyCell>
-					<TableBodyCell>{contact.phone}</TableBodyCell>
-					<TableBodyCell>{contact.company}</TableBodyCell>
+					<TableBodyCell>{contact.name ?? '--'}</TableBodyCell>
+					<TableBodyCell>{contact.email ?? '--'}</TableBodyCell>
+					<TableBodyCell>{contact.phone ?? '--'}</TableBodyCell>
+					<TableBodyCell>{contact.company ?? '--'}</TableBodyCell>
 					<TableBodyCell>
 						<Button
 							color="primary"
