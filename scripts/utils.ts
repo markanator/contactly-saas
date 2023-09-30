@@ -2,20 +2,17 @@ import detect from 'detect-port';
 import { execSync } from 'child_process';
 import pg from 'pg';
 import { ENV } from '$lib/server/env';
-import { createClient } from '@supabase/supabase-js';
-import type { Database } from '$lib/supabase-types';
 import type { z } from 'zod';
 import type { registerUserSchema } from '$lib/schemas';
-
-const DEFAULT_PG_PORT = 54322;
+import { supabaseAdmin } from '$lib/server/supbase-admin';
+import { faker } from '@faker-js/faker';
 
 export async function startSupabase() {
-	const port = await detect(DEFAULT_PG_PORT);
+	const port = await detect(54322);
 
-	if (port !== DEFAULT_PG_PORT) {
+	if (port !== 54322) {
 		return;
 	}
-	// if its not running, start it
 	execSync('pnpx supabase start');
 }
 
@@ -25,14 +22,13 @@ export async function clearSupabaseData() {
 	});
 	await client.connect();
 	await client.query('TRUNCATE auth.users CASCADE');
+	await client.query('TRUNCATE public.contacts CASCADE');
 }
-
-const supabase = createClient<Database>(ENV.PUBLIC_SUPABASE_URL, ENV.PUBLIC_SUPABASE_ANON_KEY);
 
 type CreateUser = Omit<z.infer<typeof registerUserSchema>, 'passwordConfirm'>;
 
 export async function createUser(user: CreateUser) {
-	const { data: authData, error: authError } = await supabase.auth.signUp({
+	const { data: authData, error: authError } = await supabaseAdmin.auth.signUp({
 		email: user.email,
 		password: user.password,
 		options: {
@@ -42,8 +38,30 @@ export async function createUser(user: CreateUser) {
 		}
 	});
 
+	await supabaseAdmin.auth.signOut();
+
 	if (authError || !authData.user) {
 		throw new Error('Error creating user');
 	}
 	return authData.user;
+}
+
+export async function createContact(user_id: string) {
+	const firstName = faker.person.firstName();
+	const lastName = faker.person.lastName();
+	const contact = {
+		name: `${firstName} ${lastName}`,
+		email: faker.internet.email({ firstName, lastName }),
+		company: faker.company.name(),
+		phone: faker.phone.number(),
+		user_id
+	};
+
+	const { error, data } = await supabaseAdmin.from('contacts').insert(contact);
+
+	if (error) {
+		throw error;
+	}
+
+	return data;
 }
