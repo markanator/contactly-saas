@@ -9,7 +9,7 @@ export const GET: RequestHandler = async (event) => {
 	if (!session) {
 		throw redirect(302, '/login');
 	}
-
+	// use query strings for other options
 	const price_id = event.url.searchParams.get('id');
 	if (!price_id) {
 		throw error(400, 'Invalid request');
@@ -40,8 +40,15 @@ export const GET: RequestHandler = async (event) => {
 			subscription_data: {
 				metadata: {
 					user_id: session.user.id
+				},
+				trial_period_days: 14,
+				trial_settings: {
+					end_behavior: {
+						missing_payment_method: 'cancel'
+					}
 				}
-			}
+			},
+			payment_method_collection: 'if_required'
 		});
 
 		if (!checkoutSession.url) {
