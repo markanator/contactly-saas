@@ -31,7 +31,7 @@ export const load: PageServerLoad = async (event) => {
 };
 
 export const actions: Actions = {
-	updateContact: async (event) => {
+	'update-contact': async (event) => {
 		const session = await event.locals.getSession();
 		if (!session || !event.params.contactId) {
 			throw error(401, 'Unauthorized');
