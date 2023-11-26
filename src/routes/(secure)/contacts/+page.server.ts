@@ -2,7 +2,7 @@ import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { createContactSchema, deleteContactSchema } from '$lib/schemas';
-import { supabaseAdmin } from '$lib/server/supbase-admin';
+import { supabaseAdmin } from '$lib/server/supabase-admin';
 
 export const load: PageServerLoad = async (event) => {
 	const session = await event.locals.getSession();
