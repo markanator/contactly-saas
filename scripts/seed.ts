@@ -8,6 +8,11 @@ import {
 
 const testUsers = [
 	{
+		full_name: 'Mark Ambro',
+		email: 'mark@me.com',
+		password: 'password'
+	},
+	{
 		full_name: 'Test User 1',
 		email: 't1@t.com',
 		password: 'password'
@@ -29,11 +34,6 @@ async function seed() {
 		await startSupabase();
 		await clearSupabaseData();
 		await syncStripeProducts();
-		await createUser({
-			email: 'mark@me.com',
-			full_name: 'Mark Test User',
-			password: 'password'
-		});
 
 		for (const testUser of testUsers) {
 			const user = await createUser(testUser);
