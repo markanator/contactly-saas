@@ -3,7 +3,8 @@ import type { RequestHandler } from './$types';
 import type Stripe from 'stripe';
 import { stripe } from '$lib/server/stripe';
 import { ENV } from '$lib/server/env';
-import { deleteProductRecord, upsertProductRecord } from '$lib/server/products';
+import { deleteProductRecord, upsertProductRecord } from '$lib/server/stripe/products';
+import { deleteCustomerRecord, updateCustomerRecord } from '$lib/server/stripe/customers';
 
 export const POST: RequestHandler = async (event) => {
 	const stripeSignature = event.request.headers.get('stripe-signature');
@@ -36,10 +37,10 @@ export const POST: RequestHandler = async (event) => {
 				await deleteProductRecord(stripeEvent.data.object);
 				break;
 			case 'customer.updated':
-				console.log('customer updated', stripeEvent);
+				await updateCustomerRecord(stripeEvent.data.object);
 				break;
 			case 'customer.deleted':
-				console.log('Customer deleted', stripeEvent);
+				await deleteCustomerRecord(stripeEvent.data.object);
 				break;
 			case 'customer.subscription.created':
 				console.log('Customer Subscription created', stripeEvent);

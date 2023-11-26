@@ -58,4 +58,9 @@ export const stripeProductSchema = z.object({
 	description: z.string(),
 	metadata: z.record(z.string())
 });
-export type StripeProductSchema = typeof stripeProductSchema;
+
+export const stripeCustomerSchema = z.object({
+	id: z.string(),
+	email: z.string().email(),
+	metadata: z.record(z.string())
+});
