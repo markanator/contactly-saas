@@ -10,3 +10,8 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 test-results
 .vercel
+
+# Supabase
+/supabase/.branches
+/supabase/.temp
+/supabase/.env
