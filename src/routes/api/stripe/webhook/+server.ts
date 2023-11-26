@@ -5,6 +5,10 @@ import { stripe } from '$lib/server/stripe';
 import { ENV } from '$lib/server/env';
 import { deleteProductRecord, upsertProductRecord } from '$lib/server/stripe/products';
 import { deleteCustomerRecord, updateCustomerRecord } from '$lib/server/stripe/customers';
+import {
+	insertSubscriptionRecord,
+	updateSubscriptionRecord
+} from '$lib/server/stripe/subscriptions';
 
 export const POST: RequestHandler = async (event) => {
 	const stripeSignature = event.request.headers.get('stripe-signature');
@@ -43,13 +47,11 @@ export const POST: RequestHandler = async (event) => {
 				await deleteCustomerRecord(stripeEvent.data.object);
 				break;
 			case 'customer.subscription.created':
-				console.log('Customer Subscription created', stripeEvent);
+				await insertSubscriptionRecord(stripeEvent.data.object);
 				break;
 			case 'customer.subscription.updated':
-				console.log('Customer Subscription updated', stripeEvent);
-				break;
 			case 'customer.subscription.deleted':
-				console.log('Customer Subscription deleted', stripeEvent);
+				await updateSubscriptionRecord(stripeEvent.data.object);
 				break;
 			case 'customer.subscription.trial_will_end':
 				console.log('Customer Subscription trial will end', stripeEvent);
