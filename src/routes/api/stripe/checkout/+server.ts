@@ -1,12 +1,18 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { createCheckoutSession } from '$lib/server/stripe/subscriptions';
+import { createCheckoutSession, getSubscriptionTier } from '$lib/server/stripe/subscriptions';
 
 export const GET: RequestHandler = async (event) => {
 	const session = await event.locals.getSession();
 	if (!session) {
 		throw redirect(302, '/login');
 	}
+	const tier = await getSubscriptionTier(session.user.id);
+
+	if (tier !== 'Free') {
+		throw redirect(302, '/account/billing');
+	}
+
 	// use query strings for other options
 	const price_id = event.url.searchParams.get('id');
 	if (!price_id) {
