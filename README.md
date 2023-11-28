@@ -1,38 +1,50 @@
-# create-svelte
+# Contactly-SaaS
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Contactly leverages cutting-edge technologies like SvelteKit, Supabase, and Stripe, to address the growing demand for efficient, scalable, and secure contact management solutions.
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Demo
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+![Contactly showcase](./docs/preview.png)
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
 
-## Developing
+## Tech Stack
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+**Client:** SvelteKit, TailwindCSS, Flowbite Svelte
 
-```bash
-npm run dev
+**Server:** SvelteKit, Supabase, Stripe
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
 
-## Building
+## Features
 
-To create a production version of your app:
+- Stripe Checkout
+- Email Authentication
+- Contact Management
+- Light/dark mode
+
+
+## Getting Started
+
+Install deps with pnpm
 
 ```bash
-npm run build
+  pnpm install
 ```
 
-You can preview the production build with `npm run preview`.
+## Development
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Start local Supabase instance then, run development server locally
+
+```bash
+  pnpm supbase start && pnpm dev
+```
+    
+## Authors
+
+- [@markanator](https://www.github.com/markanator)
+
+
+## Acknowledgements
+
+ - [@huntabyte](https://courses.huntabyte.com/modern-saas)
+ 
