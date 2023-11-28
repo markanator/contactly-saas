@@ -3,6 +3,7 @@
 	import { Button, Modal } from 'flowbite-svelte';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
+	import toast from 'svelte-french-toast';
 
 	export let data: SuperValidated<DeleteContactSchema>;
 	export let open = false;
@@ -12,9 +13,21 @@
 		id: 'delete',
 		resetForm: true,
 		onResult: ({ result }) => {
-			if (result.type === 'success') {
-				open = false;
+			switch (result.type) {
+				case 'success':
+					open = false;
+					toast.success('Successfully deleted contact!');
+					break;
+				case 'error':
+					toast.error('Error deleting your contact.');
+					break;
+				case 'failure':
+					toast.error('Error deleting your contact.');
+					break;
+				default:
+					return;
 			}
+			return;
 		}
 	});
 </script>
