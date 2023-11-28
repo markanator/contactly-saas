@@ -3,11 +3,12 @@ import type { PageServerLoad } from './$types';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { emailSchema, passwordSchema, profileSchema } from '$lib/schemas';
 import { getSubscriptionTier } from '$lib/server/stripe/subscriptions';
+import { handleLoginRedirect } from '$lib/helpers';
 
 export const load: PageServerLoad = async (event) => {
 	const session = await event.locals.getSession();
 	if (!session) {
-		throw redirect(302, '/login');
+		throw redirect(302, handleLoginRedirect(event));
 	}
 	async function getUserProfile() {
 		const { data: profile, error: profileError } = await event.locals.supabase

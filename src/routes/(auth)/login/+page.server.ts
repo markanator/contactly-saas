@@ -3,11 +3,12 @@ import { fail, type Actions, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
 import type { PageServerLoad } from './$types';
 import { loginUserSchema } from '$lib/schemas';
+import { handleLoginRedirect } from '$lib/helpers';
 
 export const load: PageServerLoad = async (event) => {
 	const session = await event.locals.getSession();
 	if (session) {
-		throw redirect(302, '/');
+		throw redirect(302, handleLoginRedirect(event));
 	}
 
 	return {
@@ -17,6 +18,7 @@ export const load: PageServerLoad = async (event) => {
 
 export const actions: Actions = {
 	default: async (event) => {
+		const redirectTo = event.url.searchParams.get('redirectTo');
 		const form = await superValidate(event, loginUserSchema);
 		if (!form.valid) {
 			return fail(400, { form });
@@ -29,6 +31,9 @@ export const actions: Actions = {
 				return fail(400, { form });
 			}
 		}
-		throw redirect(302, '/');
+		if (redirectTo) {
+			throw redirect(302, `/${redirectTo?.slice(1)}`);
+		}
+		throw redirect(302, handleLoginRedirect(event));
 	}
 };

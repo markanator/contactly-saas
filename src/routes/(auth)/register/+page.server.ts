@@ -2,11 +2,12 @@ import { setError, superValidate } from 'sveltekit-superforms/server';
 import { fail, type Actions, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { registerUserSchema } from '$lib/schemas';
+import { handleLoginRedirect } from '$lib/helpers';
 
 export const load: PageServerLoad = async (event) => {
 	const session = await event.locals.getSession();
 	if (session) {
-		throw redirect(302, '/');
+		throw redirect(302, handleLoginRedirect(event));
 	}
 	return {
 		form: superValidate(registerUserSchema)
