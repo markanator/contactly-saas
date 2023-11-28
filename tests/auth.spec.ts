@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { loginUser, logoutUser, registerUser } from './utils.js';
+import { loginUser, logoutUser, registerUser } from './utils';
 
 const testUser = {
 	full_name: 'Test User',

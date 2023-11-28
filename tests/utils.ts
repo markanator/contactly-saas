@@ -8,7 +8,7 @@ type User = {
 
 export async function registerUser(page: Page, testUser: User) {
 	await page.goto('/');
-	await page.getByRole('link', { name: 'Register' }).click();
+	await page.getByRole('button', { name: 'Register' }).click();
 	await expect(page.getByRole('heading', { name: 'Register' })).toBeVisible();
 
 	const registerForm = page.getByTestId('register-form');
@@ -16,20 +16,20 @@ export async function registerUser(page: Page, testUser: User) {
 	await registerForm.getByTestId('email').fill(testUser.email);
 	await registerForm.getByTestId('password').fill(testUser.password);
 	await registerForm.getByTestId('passwordConfirm').fill(testUser.password);
-	await registerForm.getByRole('button', { name: 'Register' }).click();
+	await registerForm.getByTestId('register-button').click();
 
 	await expect(page.getByRole('button', { name: 'Account ' })).toBeVisible();
 }
 
 export async function loginUser(page: Page, testUser: User) {
 	await page.goto('/');
-	await page.getByRole('link', { name: 'Login' }).click();
+	await page.getByRole('button', { name: 'Login' }).click();
 	await expect(page.getByRole('heading', { name: 'Login ' })).toBeVisible();
 
 	const loginForm = page.getByTestId('login-form');
 	await loginForm.getByTestId('email').fill(testUser.email);
 	await loginForm.getByTestId('password').fill(testUser.password);
-	await loginForm.getByRole('button', { name: 'Login' }).click();
+	await loginForm.getByTestId('login-button').click();
 
 	await expect(page).toHaveURL('/');
 	await expect(page.getByRole('button', { name: 'Account' })).toBeVisible();

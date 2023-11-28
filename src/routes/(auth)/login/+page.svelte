@@ -35,7 +35,7 @@
 						<span class="block text-red-600 dark:text-red-500">{$errors.password}</span>
 					{/if}
 				</label>
-				<Button type="submit" class="w-full" color="blue">Login</Button>
+				<Button type="submit" class="w-full" data-testid="login-button" color="blue">Login</Button>
 				<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
 					Don't have an account? <a
 						href="/register"

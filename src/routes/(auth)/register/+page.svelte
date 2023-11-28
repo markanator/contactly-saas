@@ -59,7 +59,9 @@
 						<span class="block text-red-600 dark:text-red-500">{$errors.passwordConfirm}</span>
 					{/if}
 				</label>
-				<Button type="submit" class="w-full" color="blue">Register</Button>
+				<Button type="submit" class="w-full" data-testid="register-button" color="blue"
+					>Register</Button
+				>
 				<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
 					Already have an account?
 					<a href="/login" class="text-blue-700 hover:underline dark:text-blue-500">Sign in</a>
