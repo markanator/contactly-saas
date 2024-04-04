@@ -51,7 +51,7 @@ devDependencies:
     version: 3.1.0(@sveltejs/kit@1.27.6)
   '@sveltejs/kit':
     specifier: ^1.27.6
-    version: 1.27.6(svelte@4.2.7)(vite@4.5.2)
+    version: 1.27.6(svelte@4.2.7)(vite@4.5.3)
   '@types/detect-port':
     specifier: ^1.3.5
     version: 1.3.5
@@ -128,8 +128,8 @@ devDependencies:
     specifier: ^5.3.2
     version: 5.3.2
   vite:
-    specifier: ^4.5.2
-    version: 4.5.2(@types/node@20.10.0)
+    specifier: ^4.5.3
+    version: 4.5.3(@types/node@20.10.0)
   vitest:
     specifier: ^0.34.6
     version: 0.34.6
@@ -536,7 +536,7 @@ packages:
     dependencies:
       '@supabase/auth-helpers-shared': 0.6.3(@supabase/supabase-js@2.38.5)
       '@supabase/supabase-js': 2.38.5
-      '@sveltejs/kit': 1.27.6(svelte@4.2.7)(vite@4.5.2)
+      '@sveltejs/kit': 1.27.6(svelte@4.2.7)(vite@4.5.3)
     dev: false
 
   /@supabase/functions-js@2.1.5:
@@ -599,7 +599,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@sveltejs/kit': 1.27.6(svelte@4.2.7)(vite@4.5.2)
+      '@sveltejs/kit': 1.27.6(svelte@4.2.7)(vite@4.5.3)
       import-meta-resolve: 4.0.0
     dev: true
 
@@ -608,7 +608,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^1.5.0
     dependencies:
-      '@sveltejs/kit': 1.27.6(svelte@4.2.7)(vite@4.5.2)
+      '@sveltejs/kit': 1.27.6(svelte@4.2.7)(vite@4.5.3)
       '@vercel/nft': 0.24.3
       esbuild: 0.18.20
     transitivePeerDependencies:
@@ -616,7 +616,7 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit@1.27.6(svelte@4.2.7)(vite@4.5.2):
+  /@sveltejs/kit@1.27.6(svelte@4.2.7)(vite@4.5.3):
     resolution: {integrity: sha512-GsjTkMbKzXdbeRg0tk8S7HNShQ4879ftRr0ZHaZfjbig1xQwG57Bvcm9U9/mpLJtCapLbLWUnygKrgcLISLC8A==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
@@ -625,7 +625,7 @@ packages:
       svelte: ^3.54.0 || ^4.0.0-next.0 || ^5.0.0-next.0
       vite: ^4.0.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.7)(vite@4.5.2)
+      '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.7)(vite@4.5.3)
       '@types/cookie': 0.5.1
       cookie: 0.5.0
       devalue: 4.3.2
@@ -639,11 +639,11 @@ packages:
       svelte: 4.2.7
       tiny-glob: 0.2.9
       undici: 5.26.5
-      vite: 4.5.2(@types/node@20.10.0)
+      vite: 4.5.3(@types/node@20.10.0)
     transitivePeerDependencies:
       - supports-color
 
-  /@sveltejs/vite-plugin-svelte-inspector@1.0.4(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.7)(vite@4.5.2):
+  /@sveltejs/vite-plugin-svelte-inspector@1.0.4(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.7)(vite@4.5.3):
     resolution: {integrity: sha512-zjiuZ3yydBtwpF3bj0kQNV0YXe+iKE545QGZVTaylW3eAzFr+pJ/cwK8lZEaRp4JtaJXhD5DyWAV4AxLh6DgaQ==}
     engines: {node: ^14.18.0 || >= 16}
     peerDependencies:
@@ -651,29 +651,29 @@ packages:
       svelte: ^3.54.0 || ^4.0.0
       vite: ^4.0.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.7)(vite@4.5.2)
+      '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.7)(vite@4.5.3)
       debug: 4.3.4
       svelte: 4.2.7
-      vite: 4.5.2(@types/node@20.10.0)
+      vite: 4.5.3(@types/node@20.10.0)
     transitivePeerDependencies:
       - supports-color
 
-  /@sveltejs/vite-plugin-svelte@2.5.3(svelte@4.2.7)(vite@4.5.2):
+  /@sveltejs/vite-plugin-svelte@2.5.3(svelte@4.2.7)(vite@4.5.3):
     resolution: {integrity: sha512-erhNtXxE5/6xGZz/M9eXsmI7Pxa6MS7jyTy06zN3Ck++ldrppOnOlJwHHTsMC7DHDQdgUp4NAc4cDNQ9eGdB/w==}
     engines: {node: ^14.18.0 || >= 16}
     peerDependencies:
       svelte: ^3.54.0 || ^4.0.0 || ^5.0.0-next.0
       vite: ^4.0.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 1.0.4(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.7)(vite@4.5.2)
+      '@sveltejs/vite-plugin-svelte-inspector': 1.0.4(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@4.2.7)(vite@4.5.3)
       debug: 4.3.4
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.4
       svelte: 4.2.7
       svelte-hmr: 0.15.3(svelte@4.2.7)
-      vite: 4.5.2(@types/node@20.10.0)
-      vitefu: 0.2.4(vite@4.5.2)
+      vite: 4.5.3(@types/node@20.10.0)
+      vitefu: 0.2.4(vite@4.5.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -3142,7 +3142,7 @@ packages:
       svelte: 3.x || 4.x
       zod: 3.x
     dependencies:
-      '@sveltejs/kit': 1.27.6(svelte@4.2.7)(vite@4.5.2)
+      '@sveltejs/kit': 1.27.6(svelte@4.2.7)(vite@4.5.3)
       svelte: 4.2.7
       zod: 3.22.4
     dev: true
@@ -3412,7 +3412,7 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.5.2(@types/node@20.10.0)
+      vite: 4.5.3(@types/node@20.10.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -3424,8 +3424,8 @@ packages:
       - terser
     dev: true
 
-  /vite@4.5.2(@types/node@20.10.0):
-    resolution: {integrity: sha512-tBCZBNSBbHQkaGyhGCDUGqeo2ph8Fstyp6FMSvTtsXeZSPpSMGlviAOav2hxVTqFcx8Hj/twtWKsMJXNY0xI8w==}
+  /vite@4.5.3(@types/node@20.10.0):
+    resolution: {integrity: sha512-kQL23kMeX92v3ph7IauVkXkikdDRsYMGTVl5KY2E9OY4ONLvkHf04MDTbnfo6NKxZiDLWzVpP5oTa8hQD8U3dg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -3459,7 +3459,7 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /vitefu@0.2.4(vite@4.5.2):
+  /vitefu@0.2.4(vite@4.5.3):
     resolution: {integrity: sha512-fanAXjSaf9xXtOOeno8wZXIhgia+CZury481LsDaV++lSvcU2R9Ch2bPh3PYFyoHW+w9LqAeYRISVQjUIew14g==}
     peerDependencies:
       vite: ^3.0.0 || ^4.0.0
@@ -3467,7 +3467,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.5.2(@types/node@20.10.0)
+      vite: 4.5.3(@types/node@20.10.0)
 
   /vitest@0.34.6:
     resolution: {integrity: sha512-+5CALsOvbNKnS+ZHMXtuUC7nL8/7F1F2DnHGjSsszX8zCjWSSviphCb/NuS9Nzf4Q03KyyDRBAXhF/8lffME4Q==}
@@ -3521,7 +3521,7 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.5.2(@types/node@20.10.0)
+      vite: 4.5.3(@types/node@20.10.0)
       vite-node: 0.34.6(@types/node@20.10.0)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
